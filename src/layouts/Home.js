@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {Jumbotron, FormGroup, InputGroup, FormControl, Button, DropdownButton, MenuItem} from 'react-bootstrap';
+import {Grid, Jumbotron, FormGroup, InputGroup, FormControl, Button, DropdownButton, MenuItem} from 'react-bootstrap';
 
 import Header from '../components/Header.js';
 
 class Home extends React.Component {
 	render() {
 		return (
-			<div className="container-fluid">
-				<Header />
+			<div>
+			<Header />
+			<Grid>
 				<Jumbotron>
 				    <h1>Hello, Welcome to Mico!</h1>
 				    <p>A user friendly and accessible online shopping site</p>
@@ -30,6 +31,7 @@ class Home extends React.Component {
 					    </FormGroup>
 				    </div>
 				</Jumbotron>
+			</Grid>
 			</div>
 		)
 	}

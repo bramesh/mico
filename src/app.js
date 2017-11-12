@@ -2,13 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import {Provider} from 'react-redux';
-import { BrowserRouter, Route, NavLink } from 'react-router-dom'
+import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+
+import {createStore, applyMiddleware} from 'redux';
+import {logger} from 'redux-logger';
+import thunk from 'redux-thunk'
 
 import Home from './layouts/Home.js';
 import ProductList from './layouts/ProductList.js';
 import ProductDetails from './layouts/ProductDetails.js';
 
-const store = {}
+import reducers from './reducers/index';
+
+
+const middleware = applyMiddleware(thunk, logger);
+
+const store = createStore(
+	reducers,
+	middleware
+	)
+
 
 const MicoRoutes = () => (
 		<div>
@@ -21,9 +34,11 @@ const MicoRoutes = () => (
 	)
 
 const App = () => (		
-			<BrowserRouter>				
-				<MicoRoutes />
-			</BrowserRouter>		
+			<Provider store={store}>
+				<BrowserRouter>				
+					<MicoRoutes />
+				</BrowserRouter>
+			</Provider>		
 	)
 
 
