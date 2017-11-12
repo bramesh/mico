@@ -1,0 +1,59 @@
+{
+	"productId": "1",
+	"productName": "Wells Fargo Laptop",
+	"productDesc" : "Lorem Ipsum Lorem Ipsum",
+	"productImgUrl": "http://dummyImage.jpeg",
+	"Category": "Electronics",
+	"Processor" : [ "i3", "i5", "i7" ],
+	"Screen size" : [ "11-13", "14-16" ],
+	"Memory" : [ "4 GB", "6 GB", "8 GB"],
+	"Touch screen" : ["Yes", "No"],
+	"OS" : ["Windows", "Ubuntu"]
+},
+{
+	"productId" : "2",
+	"productName" : "iMobile",
+	"productDesc" : "Lorem Ipsum Lorem Ipsum",
+	"productImgUrl": "http://dummyImage/jpeg",
+	"Category": "Electronics",
+	"Price": "9999",
+	"Color" : ["Gold", "Black", "White"],
+	"Size" : ["64GB", "32GB"]
+},
+{
+	"productId" : "3",
+	"productName" : "Shirt",
+	"productDesc" : "100% Cotton slim fit",
+	"productImgUrl": "http://dummyImage/jpeg",
+	"Category": "Apparel",
+	"Price": "2999",
+	"Color" : ["Red", "Black", "White"],
+	"Size" : ["S", "M", "L", "XL", "XXL"]
+},
+{
+	"productId" : "4",
+	"productName" : "Trouser",
+	"productDesc" : "Lorem Ipsum",
+	"productImgUrl": "http://dummyImage/jpeg",
+	"Category": "Apparel",
+	"Price": "3999",
+	"Color" : ["Gold", "Black", "White"],
+	"Size" : ["32", "34", "36", "38"]
+},
+{
+	"productId" : "5",
+	"productName" : "Milk",
+	"productDesc" : "Amul Taza Milk",
+	"productImgUrl": "http://dummyImage/jpeg",
+	"Category": "Groceries",
+	"Price": "62",
+	"Type" : ["Cow", "Toned", "Skimmed"]
+},
+{
+	"productId" : "6",
+	"productName" : "Eggs",
+	"productDesc" : "Amul Taza Milk",
+	"productImgUrl": "http://dummyImage/jpeg",
+	"Category": "Groceries",
+	"Price per size": [ "6pc - Rs. 50", "12pc - Rs.92" ]
+}

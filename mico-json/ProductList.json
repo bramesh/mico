@@ -1,0 +1,50 @@
+[
+    {
+        "productId": "1",
+        "productName": "Laptops",
+        "productImgUrl": "dolor",
+        "Category": "Electronics"
+    },
+    {
+        "productId": "2",
+        "productName": "Mobiles",
+        "productImgUrl": "http://dummyImage.jpeg",
+        "Category": "Electronics"
+    },
+    {
+        "productId": "4",
+        "productName": "Fromal Shirts",
+        "productImgUrl": "http://dummyImage.jpeg",
+        "Category": "Apparel"
+    },
+    {
+        "productId": "5",
+        "productName": "Trousers",
+        "productImgUrl": "http://dummyImage.jpeg",
+        "Category": "Apparel"
+    },
+    {
+        "productId": "6",
+        "productName": "Casual Shirts",
+        "productImgUrl": "http://dummyImage.jpeg",
+        "Category": "Groceries"
+    },
+    {
+        "productId": "7",
+        "productName": "Milk",
+        "productImgUrl": "http://dummyImage.jpeg",
+        "Category": "Groceries"
+    },
+    {
+        "productId": "8",
+        "productName": "Eggs",
+        "productImgUrl": "http://dummyImage.jpeg",
+        "Category": "Groceries"
+    },
+    {
+        "productId": "9",
+        "productName": "Bread",
+        "productImgUrl": "http://dummyImage.jpeg",
+        "Category": "Groceries"
+    }
+]
