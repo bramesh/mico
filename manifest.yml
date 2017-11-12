@@ -1,0 +1,4 @@
+applications:
+- name: mico-ecommerce
+  random-route: true
+  memory: 128M
