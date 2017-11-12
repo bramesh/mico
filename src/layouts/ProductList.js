@@ -12,26 +12,30 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 class ProductList extends React.Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 	}
 
 	componentDidMount() {
 		this.props.getProducts();
 	}
 	render() {
+		const products = this.props.products;
+		console.log(products)
+		const showProducts = products.map(function(item) {
+			return(
+				<Col sm={6} md={3} key={item._id}>
+					<Product title={item.productName} price="Rs.2500" />
+				</Col>
+			)
+		}, this)
 		return (
 			<div>
 				<Header />
 				<Grid>
 				<h1>Product List</h1>				
 					<Row className="show-grid">
-						<Col sm={6} md={3}><Product title="Jeans" price="Rs.2500" /></Col>
-						<Col sm={6} md={3}><Product title="Laptop" price="Rs.50000" /></Col>
-						<Col sm={6} md={3}><Product title="Mobile" price="Rs.40000" /></Col>
-						<Col sm={6} md={3}><Product title="Milk" price="Rs.50" /></Col>
-						<Col sm={6} md={3}><Product title="Eggs" price="Rs.50" /></Col>
-						<Col sm={6} md={3}><Product title="Trousers" price="Rs.1000" /></Col>
+						{showProducts}
 					</Row>
 				</Grid>
 			</div>
@@ -41,7 +45,7 @@ class ProductList extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		products: state.products
+		products: state.products.products
 	}
 }
 
