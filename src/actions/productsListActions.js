@@ -11,3 +11,12 @@ export function getProducts() {
 			})
 	}
 }
+
+export function getProductDetails() {
+	return function(dispatch) {
+		axios.get('/details')
+			.then(function(response) {
+				dispatch({type: 'GET_PRODUCT_DETAILS', payload: response.data})
+			})
+	}
+}

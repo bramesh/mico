@@ -23,17 +23,30 @@ mongoose.connect('mongodb://ramesh:ramesh@ds155325.mlab.com:55325/micoproducts')
 
 var Products = require('./models/products.js');
 
-//Get Products list
+//Get Products List
 app.get('/products', function(req, res) {
 	var query = {}
-	Products.find(query, 'productName productPrice', function(err, products) {
+	Products.find(query, 'productId productName price productImgUrl', function(err, products) {
 		if(err) {
 			throw err;
 		} else {
 			res.json(products);
 		}
 	})
-}) 
+})
+
+//Get Products Details
+app.get('/products/:productId', function(req, res) {
+	var query = {productId: req.params.productId};
+
+	Products.find(query, 'productId productName productImgUrl price productDetails', function(err, productDetails) {
+		if(err) {
+			throw err;
+		} else {
+			res.json(productDetails);
+		}
+	})
+})
 
 //API END
 

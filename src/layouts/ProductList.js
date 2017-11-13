@@ -21,11 +21,10 @@ class ProductList extends React.Component {
 	}
 	render() {
 		const products = this.props.products;
-		console.log(products)
 		const showProducts = products.map(function(item) {
 			return(
 				<Col sm={6} md={3} key={item._id}>
-					<Product title={item.productName} price="Rs.2500" />
+					<Product title={item.productName} price={item.price} productImgUrl={item.productImgUrl} productId={item.productId} history={this.props.history} />
 				</Col>
 			)
 		}, this)
