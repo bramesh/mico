@@ -4,17 +4,38 @@ import {Grid, Row, Col, Image, Button} from 'react-bootstrap';
 
 import Header from '../components/Header.js';
 
+import {getProductDetails} from '../actions/productsListActions';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
 class ProductDetails extends React.Component {
+	constructor(props) {
+		super(props)
+	}
+	componentDidMount() {
+		this.props.getProductDetails(1);
+
+	}
 	render() {
+		const details = this.props.details;
+		let defaultOptions = details.defaultOptions;
+		if(defaultOptions) {
+			defaultOptions = details.defaultOptions[0]
+			for(let i in defaultOptions) {
+				console.log(defaultOptions[i]);
+			}
+		}
 		return (
 			<div>
 				<Header />
 				<Grid>
 					<Row className="show-grid">
-						<Col xs={6} md={4}><Image src="https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/M/AC/MACBOOKPRO/MACBOOKPRO?wid=1879&hei=1061&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=6xyk93" responsive /></Col>
+						<Col xs={6} md={4}>
+							<Image src={details.productImgUrl} responsive />
+						</Col>
 						<Col xs={12} md={8}>
-							<h1>Apple MacBook Pro</h1>
-							<h3>Rs.50000</h3>
+							<h1>{details.productName}</h1>
+							<h3>Rs.{details.price}</h3>
 							<Button bsStyle="primary">Add to Cart</Button>
 						</Col>
 					</Row>
@@ -24,4 +45,16 @@ class ProductDetails extends React.Component {
 	}
 }
 
-export default ProductDetails;
+function mapStateToProps(state) {
+	return {
+			details: state.details
+		}
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		getProductDetails: getProductDetails
+	}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

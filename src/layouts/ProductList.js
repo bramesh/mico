@@ -23,7 +23,7 @@ class ProductList extends React.Component {
 		const products = this.props.products;
 		const showProducts = products.map(function(item) {
 			return(
-				<Col sm={6} md={3} key={item._id}>
+				<Col sm={6} md={3} key={item.productId}>
 					<Product title={item.productName} price={item.price} productImgUrl={item.productImgUrl} productId={item.productId} history={this.props.history} />
 				</Col>
 			)

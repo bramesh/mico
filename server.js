@@ -19,12 +19,12 @@ var mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost/residentdbnew');
 
 //Mongo lab db
-mongoose.connect('mongodb://ramesh:ramesh@ds155325.mlab.com:55325/micoproducts')
+//mongoose.connect('mongodb://ramesh:ramesh@ds155325.mlab.com:55325/micoproducts')
 
 var Products = require('./models/products.js');
 
 //Get Products List
-app.get('/products', function(req, res) {
+/*app.get('/products', function(req, res) {
 	var query = {}
 	Products.find(query, 'productId productName price productImgUrl', function(err, products) {
 		if(err) {
@@ -46,8 +46,57 @@ app.get('/products/:productId', function(req, res) {
 			res.json(productDetails);
 		}
 	})
+})*/
+
+
+app.get('/products', function(req, res) {
+	var products = [{
+		"productId": 1,
+	    "productName": "MacBook",
+	    "price": 90000,
+	    "productImgUrl": "/images/laptop.jpg"
+	}]
+	res.json(products);
 })
 
+//Get Products Details
+app.get('/products/:productId', function(req, res) {
+	var product = [{
+		"productId": 1,
+	    "productName": "MacBook",
+	    "price": 90000,
+	    "productImgUrl": "/images/laptop.jpg",
+	    "defaultOptions": [{
+	    	processor: 'i3',
+			screen: '14',
+			touchbar: 'exclude'
+	    }],
+	    "productOptions": [
+	    	{
+				processor: [{
+					i3: '',
+					i5: '10000',
+					i7: '17000',
+					type: 'select'
+				}],
+			}, {
+				screen: [{
+					14: '',
+					16: '10000',
+					type: 'radio'
+				}]
+			}, {
+				touchbar: [{
+					exclude: '',
+					include: '5000',
+					type: 'checkbox'
+				}]
+			}
+	    ]
+	}]
+
+	res.json(product);
+})
 //API END
 
 app.get('/', function(req, res) {

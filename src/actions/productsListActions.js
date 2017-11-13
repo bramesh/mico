@@ -12,11 +12,14 @@ export function getProducts() {
 	}
 }
 
-export function getProductDetails() {
+export function getProductDetails(productId) {
 	return function(dispatch) {
-		axios.get('/details')
+		axios.get('/products/' + productId)
 			.then(function(response) {
 				dispatch({type: 'GET_PRODUCT_DETAILS', payload: response.data})
+			})
+			.catch(function(err) {
+				dispatch({type: 'GET_PRODUCT_DETAILS_ERROR', payload: err})
 			})
 	}
 }
