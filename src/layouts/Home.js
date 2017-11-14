@@ -1,11 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {Grid, Jumbotron, FormGroup, InputGroup, FormControl, Button, DropdownButton, MenuItem} from 'react-bootstrap';
+import {Grid, Jumbotron, FormGroup, InputGroup, FormControl} from 'react-bootstrap';
+import {Typeahead} from 'react-bootstrap-typeahead';
 
 import Header from '../components/Header.js';
 
+import {getProducts, getProductDetails} from '../actions/productsListActions';
+
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
 class Home extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	componentWillMount() {
+		this.props.getProducts();
+	}
 	render() {
 		return (
 			<div>
@@ -15,20 +27,18 @@ class Home extends React.Component {
 				    <h1>Hello, Welcome to Mico!</h1>
 				    <p>A user friendly and accessible online shopping site</p>
 				    <div>
-				    	<FormGroup>
-					      <InputGroup>
-					        <FormControl type="text" placeholder="Search for products" />
-					        <DropdownButton
-					          componentClass={InputGroup.Button}
-					          id="input-dropdown-addon"
-					          title="Categories"
-					        >
-					          <MenuItem key="1">Apparel</MenuItem>
-					          <MenuItem key="2">Electronics</MenuItem>
-					          <MenuItem key="3">Groceries</MenuItem>
-					        </DropdownButton>
-					      </InputGroup>
-					    </FormGroup>
+				    	<Typeahead
+				          labelKey="productName"
+				          options={this.props.products}
+				          filterBy={["productName"]}
+				          placeholder="Choose a Product..."
+				          onChange={(selected) => {
+				          	let product = selected[0];
+				          	let productId = product.productId;
+				          	this.props.getProductDetails(productId);
+				          	this.props.history.push('/details');
+				          }}
+				        />
 				    </div>
 				</Jumbotron>
 			</Grid>
@@ -37,4 +47,17 @@ class Home extends React.Component {
 	}
 }
 
-export default Home;
+function mapStateToProps(state) {
+	return {
+		products: state.products.products
+	}
+}
+
+function mapDispatchToProps(dispath) {
+	return bindActionCreators({
+		getProducts: getProducts,
+		getProductDetails: getProductDetails
+	}, dispath)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
