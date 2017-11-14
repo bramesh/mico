@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Grid, Row, Col, Image, Button} from 'react-bootstrap';
 
 import Header from '../components/Header.js';
+import ProductOptions from '../components/ProductOptions.js';
 
 import {getProductDetails} from '../actions/productsListActions';
 import {bindActionCreators} from 'redux';
@@ -19,12 +20,13 @@ class ProductDetails extends React.Component {
 	render() {
 		const details = this.props.details;
 		let defaultOptions = details.defaultOptions;
-		if(defaultOptions) {
+		let productOptions = details.productOptions
+		/*if(defaultOptions) {
 			defaultOptions = details.defaultOptions[0]
 			for(let i in defaultOptions) {
 				console.log(defaultOptions[i]);
 			}
-		}
+		}*/
 		return (
 			<div>
 				<Header />
@@ -37,6 +39,8 @@ class ProductDetails extends React.Component {
 							<h1>{details.productName}</h1>
 							<h3>Rs.{details.price}</h3>
 							<Button bsStyle="primary">Add to Cart</Button>
+							<br /><br />
+							<ProductOptions defaultOptions={defaultOptions} productOptions={productOptions} />
 						</Col>
 					</Row>
 				</Grid>
