@@ -10,7 +10,7 @@ class Product extends React.Component {
 		super(props);
 	}
 	getDetails(productId) {
-		this.props.history.push('/details')
+		this.props.history.push('/details/'+productId);
 	}
 	render() {
 		return(

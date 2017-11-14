@@ -14,8 +14,8 @@ class ProductDetails extends React.Component {
 		super(props)
 	}
 	componentDidMount() {
+		console.log(this.props.history);
 		this.props.getProductDetails(1);
-
 	}
 	render() {
 		const details = this.props.details;

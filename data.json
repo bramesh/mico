@@ -1,0 +1,54 @@
+var products = [{
+		"productId": 1,
+	    "productName": "MacBook",
+	    "price": 90000,
+	    "productImgUrl": "/images/laptop.jpg",
+	    "productOptions": [
+	    	{
+				"processor": [{
+					"i3": "",
+					"i5": "10000",
+					"i7": "17000",
+					"type": "select",
+					"selected": "i3"
+				}],
+			}, {
+				"screen": [{
+					"14": "",
+					"16": "10000",
+					"type": "radio",
+					"selected": "14"
+				}]
+			}, {
+				"touchbar": [{
+					"include": "5000",
+					"type": "checkbox",
+					"selected": ""
+				}]
+			}
+	    ]
+	}, {
+		"productId": 2,
+	    "productName": "UCB T-shirt",
+	    "price": 2000,
+	    "productImgUrl": "/images/ucbTshirt.jpg",
+	    "productOptions": [
+	    	{
+				"size": [{
+					"small": "",
+					"medium": "",
+					"large": "",
+					"XL": "",
+					"XXL": "",
+					"type": "select",
+					"selected": ""
+				}],
+			}, {
+				"color": [{
+					"red": "",
+					"black": "200",
+					"selected": "red"
+				}]
+			}
+	    ]
+	}]

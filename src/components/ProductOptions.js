@@ -1,22 +1,64 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
+import {FormGroup, FormControl, ControlLabel, Radio, Checkbox} from 'react-bootstrap';
 
 class ProductOptions extends React.Component {
 	constructor() {
 		super();
 		this.getListOptions = this.getListOptions.bind(this);
+		this.getFormField = this.getFormField.bind(this);
 	}
-	getFormField(type, label) {
-		if(type === 'select') {
-			<FormGroup controlId="formControlsSelect">
-		      <ControlLabel>{label}</ControlLabel>
-		      <FormControl componentClass="select" placeholder="select">
-		        <option value="select">select</option>
-		        <option value="other">...</option>
-		      </FormControl>
-		    </FormGroup>
+
+	getFormField(options, label) {
+		if(options.type === 'select') {
+			const fieldOptionsArr = [];
+			const fieldOptions = Object.assign({}, options);
+			delete fieldOptions.type;
+			delete fieldOptions.selected;
+			for(let i in fieldOptions) {
+				fieldOptionsArr.push(<option value={fieldOptions[i]}>{i}</option>)
+			}
+			return(
+					<FormGroup controlId="formControlsSelect">
+				      <ControlLabel>{label}</ControlLabel>
+				      <FormControl componentClass="select" placeholder="select">
+				        {fieldOptionsArr}
+				      </FormControl>
+				    </FormGroup>
+				)
+		} else if(options.type === 'radio') {
+			const fieldOptionsArr = [];
+			const fieldOptions = Object.assign({}, options);
+			delete fieldOptions.type;
+			delete fieldOptions.selected;
+			for(let i in fieldOptions) {
+				fieldOptionsArr.push(
+						<Radio name="radioGroup" value={fieldOptions[i]}>{i}</Radio>
+					)
+			}
+			return(
+					<FormGroup>
+					  <ControlLabel>{label}</ControlLabel>
+				      {fieldOptionsArr}
+				    </FormGroup>
+				)
+		} else if(options.type === 'checkbox') {
+			const fieldOptionsArr = [];
+			const fieldOptions = Object.assign({}, options);
+			delete fieldOptions.type;
+			delete fieldOptions.selected;
+			for(let i in fieldOptions) {
+				fieldOptionsArr.push(
+						<Checkbox name="radioGroup" value={fieldOptions[i]}>{i}</Checkbox>
+					)
+			}
+			return(
+					<FormGroup>
+					  <ControlLabel>{label}</ControlLabel>
+				      {fieldOptionsArr}
+				    </FormGroup>
+				)
 		}
 	}
 
@@ -29,15 +71,11 @@ class ProductOptions extends React.Component {
 			productOptions.map(category => {
 				for(let i in category) {
 					let currentCategory = category[i];
-					let options = currentCategory.map(option => {
-						let currentOption = []
-						for(let j in option) {
-							console.log(j);
-							currentOption.push(<div>{j}</div>);
-						}
-						return currentOption;
+					let currentOptions = currentCategory.map(options => {
+						let getFormField = this.getFormField(options, i);
+						return getFormField;
 					})
-					listCategory.push(<div className="category"><h4>{i}</h4><div className="options">{options}</div></div>)
+					listCategory.push(<div className="category"><div className="options">{currentOptions}</div></div>)
 				}
 			})
 		}

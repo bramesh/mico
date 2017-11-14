@@ -15,16 +15,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 //API START
 var mongoose = require('mongoose');
 
-//Local db
-//mongoose.connect('mongodb://localhost/residentdbnew');
 
 //Mongo lab db
-//mongoose.connect('mongodb://ramesh:ramesh@ds155325.mlab.com:55325/micoproducts')
+mongoose.connect('mongodb://ramesh:ramesh@ds155325.mlab.com:55325/micoproducts')
 
 var Products = require('./models/products.js');
 
 //Get Products List
-/*app.get('/products', function(req, res) {
+app.get('/products', function(req, res) {
 	var query = {}
 	Products.find(query, 'productId productName price productImgUrl', function(err, products) {
 		if(err) {
@@ -39,17 +37,17 @@ var Products = require('./models/products.js');
 app.get('/products/:productId', function(req, res) {
 	var query = {productId: req.params.productId};
 
-	Products.find(query, 'productId productName productImgUrl price productDetails', function(err, productDetails) {
+	Products.find(query, 'productId productName productImgUrl price productOptions', function(err, productOptions) {
 		if(err) {
 			throw err;
 		} else {
-			res.json(productDetails);
+			res.json(productOptions);
 		}
 	})
-})*/
+})
 
 
-app.get('/products', function(req, res) {
+/*app.get('/products', function(req, res) {
 	var products = [{
 		"productId": 1,
 	    "productName": "MacBook",
@@ -66,37 +64,34 @@ app.get('/products/:productId', function(req, res) {
 	    "productName": "MacBook",
 	    "price": 90000,
 	    "productImgUrl": "/images/laptop.jpg",
-	    "defaultOptions": [{
-	    	processor: 'i3',
-			screen: '14',
-			touchbar: 'exclude'
-	    }],
 	    "productOptions": [
 	    	{
 				processor: [{
 					i3: '',
 					i5: '10000',
 					i7: '17000',
-					type: 'select'
+					type: 'select',
+					selected: 'i3'
 				}],
 			}, {
 				screen: [{
 					14: '',
 					16: '10000',
-					type: 'radio'
+					type: 'radio',
+					selected: '14'
 				}]
 			}, {
 				touchbar: [{
-					exclude: '',
 					include: '5000',
-					type: 'checkbox'
+					type: 'checkbox',
+					selected: ''
 				}]
 			}
 	    ]
 	}]
 
 	res.json(product);
-})
+})*/
 //API END
 
 app.get('/', function(req, res) {
