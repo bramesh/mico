@@ -11,26 +11,24 @@ import {connect} from 'react-redux';
 
 class ProductDetails extends React.Component {
 	constructor(props) {
-		super(props)
+		super(props);
+		this.getProductOptions = this.getProductOptions.bind(this);
+		this.state = {details: false}
 	}
 	componentDidMount() {
 		console.log(this.props.history);
-		this.props.getProductDetails(1);
 	}
-	render() {
-		const details = this.props.details;
-		let defaultOptions = details.defaultOptions;
-		let productOptions = details.productOptions
-		/*if(defaultOptions) {
-			defaultOptions = details.defaultOptions[0]
-			for(let i in defaultOptions) {
-				console.log(defaultOptions[i]);
-			}
-		}*/
-		return (
-			<div>
-				<Header />
-				<Grid>
+	componentWillReceiveProps() {
+		this.setState({
+			details: true
+		})
+	}
+	getProductOptions() {
+		if(this.state.details) {
+			const details = this.props.details;
+			let defaultOptions = details.defaultOptions;
+			let productOptions = details.productOptions;
+			return (
 					<Row className="show-grid">
 						<Col xs={6} md={4}>
 							<Image src={details.productImgUrl} responsive />
@@ -43,6 +41,17 @@ class ProductDetails extends React.Component {
 							<ProductOptions defaultOptions={defaultOptions} productOptions={productOptions} />
 						</Col>
 					</Row>
+				)
+		}
+	}
+	render() {
+		const details = this.props.details;
+		const getProductOptions = this.getProductOptions() || null;
+		return (
+			<div>
+				<Header />
+				<Grid>
+					{getProductOptions}
 				</Grid>
 			</div>
 		)

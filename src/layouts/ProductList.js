@@ -6,7 +6,7 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import Header from '../components/Header.js';
 import Product from '../components/Product.js';
 
-import {getProducts} from '../actions/productsListActions';
+import {getProducts, getProductDetails} from '../actions/productsListActions';
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -24,7 +24,12 @@ class ProductList extends React.Component {
 		const showProducts = products.map(function(item) {
 			return(
 				<Col sm={6} md={3} key={item.productId}>
-					<Product title={item.productName} price={item.price} productImgUrl={item.productImgUrl} productId={item.productId} history={this.props.history} />
+					<Product title={item.productName} 
+						price={item.price} 
+						productImgUrl={item.productImgUrl} 
+						productId={item.productId} 
+						history={this.props.history}
+						getProductDetails={this.props.getProductDetails} />
 				</Col>
 			)
 		}, this)
@@ -50,7 +55,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		getProducts: getProducts
+		getProducts: getProducts,
+		getProductDetails: getProductDetails
 	}, dispatch)
 }
 
