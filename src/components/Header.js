@@ -23,7 +23,9 @@ class Header extends React.Component {
             </LinkContainer>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={1} href="#">Cart</NavItem>
+            <LinkContainer to="/cart">
+              <NavItem eventKey={1} href="#">Cart</NavItem>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -13,14 +13,19 @@ class Product extends React.Component {
 		this.props.getProductDetails(productId);
 		this.props.history.push('/details');
 	}
+	addToCart(product) {
+		console.log(product)
+		this.props.addToCart(product);
+	}
 	render() {
+		const product = this.props.product;
 		return(
-			<Thumbnail src={this.props.productImgUrl} alt="242x200">
-	          <h3>{this.props.title}</h3>
-	          <p>Rs.{this.props.price}</p>
+			<Thumbnail src={product.productImgUrl} alt="242x200">
+	          <h3>{product.title}</h3>
+	          <p>Rs.{product.price}</p>
 	          <p>
-	          	<Button bsStyle="primary" onClick={this.getDetails.bind(this, this.props.productId)}>View Details</Button>
-	            <Button bsStyle="default">Add to Cart</Button>
+	          	<Button bsStyle="primary" onClick={this.getDetails.bind(this, product.productId)}>View Details</Button>
+	            <Button bsStyle="default" onClick={this.addToCart.bind(this, product)}>Add to Cart</Button>
 	          </p>
 	        </Thumbnail>
 		)

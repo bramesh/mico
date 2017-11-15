@@ -11,6 +11,7 @@ import thunk from 'redux-thunk'
 import Home from './layouts/Home.js';
 import ProductList from './layouts/ProductList.js';
 import ProductDetails from './layouts/ProductDetails.js';
+import Cart from './layouts/Cart.js';
 
 import reducers from './reducers/index';
 
@@ -29,7 +30,7 @@ const MicoRoutes = () => (
 			<Route path="/" exact component={Home} />
 			<Route path="/products" component={ProductList} />
 			<Route path="/details" component={ProductDetails} />
-			
+			<Route path="/cart" component={Cart} />
 		</div>
 
 	)
